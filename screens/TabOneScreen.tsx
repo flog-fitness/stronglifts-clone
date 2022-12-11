@@ -1,32 +1,91 @@
-import { StyleSheet } from 'react-native';
+import { FlatList, ListRenderItem, StyleSheet } from "react-native";
 
-import EditScreenInfo from '../components/EditScreenInfo';
-import { Text, View } from '../components/Themed';
-import { RootTabScreenProps } from '../types';
+import { View } from "../components/Themed";
+import Workout from "../models/Workout";
+import { RootTabScreenProps } from "../types";
+import WorkoutComponent from "../components/Workout";
 
-export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'>) {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="/screens/TabOneScreen.tsx" />
-    </View>
-  );
+const mockWorkouts: Workout[] = [
+	{
+		name: "Workout B",
+		exercises: [
+			{ name: "Deadlift", sets: 3, reps: 5, weight: 125 },
+			{ name: "DB OHP", sets: 3, reps: 5, weight: 30 },
+			{ name: "Chinups", sets: 3, reps: 5, weight: "BW" },
+		],
+		scheduled: new Date(),
+	},
+	{
+		name: "Workout A",
+		exercises: [
+			{ name: "Squat", sets: 3, reps: 8, weight: 95 },
+			{ name: "Bench", sets: 3, reps: 5, weight: 50 }, // this guys weak af
+			{ name: "BB Row", sets: 3, reps: 5, weight: 65 },
+		],
+		scheduled: new Date(),
+	},
+	{
+		name: "Workout B",
+		exercises: [
+			{ name: "Deadlift", sets: 3, reps: 5, weight: 125 },
+			{ name: "DB OHP", sets: 3, reps: 5, weight: 30 },
+			{ name: "Chinups", sets: 3, reps: 5, weight: "BW" },
+		],
+		scheduled: new Date(),
+	},
+	{
+		name: "Workout A",
+		exercises: [
+			{ name: "Squat", sets: 3, reps: 8, weight: 95 },
+			{ name: "Bench", sets: 3, reps: 5, weight: 50 },
+			{ name: "BB Row", sets: 3, reps: 5, weight: 65 },
+		],
+		scheduled: new Date(),
+	},
+];
+
+export default function TabOneScreen({
+	navigation,
+}: RootTabScreenProps<"TabOne">) {
+	const renderItem: ListRenderItem<Workout> = ({ item }) => {
+		return <WorkoutComponent workout={item} />;
+	};
+
+	return (
+		<View style={styles.container}>
+			<FlatList
+				style={styles.list}
+				data={mockWorkouts}
+				renderItem={renderItem}
+				ItemSeparatorComponent={() => {
+					return <View style={styles.separator} />;
+				}}
+			/>
+		</View>
+	);
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
-  },
+	container: {
+		flex: 1,
+		alignItems: "center",
+		justifyContent: "center",
+		paddingTop: 15,
+		paddingHorizontal: 20,
+	},
+	textHeader: {
+		flexDirection: "row",
+		justifyContent: "space-between",
+	},
+	workoutContainer: {
+		backgroundColor: "red",
+		width: "100%",
+	},
+	list: {
+		width: "100%",
+	},
+	separator: {
+		opacity: 0,
+		height: 20,
+	},
 });
