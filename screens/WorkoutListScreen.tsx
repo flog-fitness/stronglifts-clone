@@ -51,7 +51,14 @@ export default function WorkoutListScreen({
 	navigation,
 }: WorkoutListScreenProps) {
 	const renderItem: ListRenderItem<Workout> = ({ item }) => {
-		return <WorkoutComponent workout={item} />;
+		return (
+			<WorkoutComponent
+				workout={item}
+				onClick={() => {
+					navigation.navigate("WorkoutDetails", { workout: item });
+				}}
+			/>
+		);
 	};
 
 	return (

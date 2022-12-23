@@ -2,6 +2,7 @@ import { RootTabScreenProps } from "../types";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import WorkoutDetailsScreen from "./WorkoutDetailsScreen";
 import WorkoutListScreen from "./WorkoutListScreen";
+import Workout from "../models/Workout";
 
 export default function TabOneScreen({
 	navigation,
@@ -9,9 +10,12 @@ export default function TabOneScreen({
 	return <WorkoutScreenNavigator />;
 }
 
+interface WorkoutDetailsParams {
+	workout: Workout;
+}
 export type WorkoutStackParamList = {
 	WorkoutList: undefined;
-	WorkoutDetails: undefined;
+	WorkoutDetails: WorkoutDetailsParams;
 };
 
 const WorkoutStack = createNativeStackNavigator<WorkoutStackParamList>();

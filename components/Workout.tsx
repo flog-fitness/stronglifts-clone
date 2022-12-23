@@ -1,13 +1,22 @@
 import { isTSMethodSignature } from "@babel/types";
 import React from "react";
-import { View, StyleSheet, Text, FlatList, ListRenderItem } from "react-native";
+import {
+	View,
+	StyleSheet,
+	Text,
+	FlatList,
+	ListRenderItem,
+	Pressable,
+} from "react-native";
 import Exercise from "../models/Exercise";
 import Workout from "../models/Workout";
 
 interface WorkoutProps {
 	workout: Workout;
+	onClick?: () => void;
 }
-export default function WorkoutComponent({ workout }: WorkoutProps) {
+
+export default function WorkoutComponent({ workout, onClick }: WorkoutProps) {
 	const renderItem: ListRenderItem<Exercise> = ({ item }) => {
 		return (
 			<View style={styles.exerciseContainer}>
@@ -19,20 +28,25 @@ export default function WorkoutComponent({ workout }: WorkoutProps) {
 			</View>
 		);
 	};
+
 	return (
-		<View style={styles.container}>
-			<View style={[styles.headerContainer, { marginBottom: 5 }]}>
-				<Text style={styles.titleText}>{workout.name}</Text>
-				<Text style={styles.titleText}>{workout.scheduled.toDateString()}</Text>
+		<Pressable onPress={onClick}>
+			<View style={styles.container}>
+				<View style={[styles.headerContainer, { marginBottom: 5 }]}>
+					<Text style={styles.titleText}>{workout.name}</Text>
+					<Text style={styles.titleText}>
+						{workout.scheduled.toDateString()}
+					</Text>
+				</View>
+				<FlatList
+					data={workout.exercises}
+					renderItem={renderItem}
+					ItemSeparatorComponent={() => {
+						return <View style={styles.separator} />;
+					}}
+				/>
 			</View>
-			<FlatList
-				data={workout.exercises}
-				renderItem={renderItem}
-				ItemSeparatorComponent={() => {
-					return <View style={styles.separator} />;
-				}}
-			/>
-		</View>
+		</Pressable>
 	);
 }
 
