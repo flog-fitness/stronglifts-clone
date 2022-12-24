@@ -44,9 +44,9 @@ const mockWorkouts: Workout[] = [
 	},
 ];
 
-export default function TabOneScreen({
+export default function WorkoutsScreen({
 	navigation,
-}: RootTabScreenProps<"TabOne">) {
+}: RootTabScreenProps<"Workouts">) {
 	const renderItem: ListRenderItem<Workout> = ({ item }) => {
 		return <WorkoutComponent workout={item} />;
 	};
