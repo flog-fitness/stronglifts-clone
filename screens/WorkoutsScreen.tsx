@@ -8,9 +8,7 @@ import { ListRenderItem } from 'react-native';
 export default function WorkoutsScreen({
   navigation,
 }: RootTabScreenProps<'Workouts'>) {
-  const renderItem: ListRenderItem<Workout> = ({ item }) => {
-    return <WorkoutScreenNavigator />;
-  };
+  return <WorkoutScreenNavigator />;
 }
 
 interface WorkoutDetailsParams {

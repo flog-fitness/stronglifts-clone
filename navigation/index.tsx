@@ -61,6 +61,7 @@ function BottomTabNavigator() {
       initialRouteName="Workouts"
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme].tint,
+        headerShown: false,
       }}>
       <BottomTab.Screen
         name="Workouts"

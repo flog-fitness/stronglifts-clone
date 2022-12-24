@@ -4,7 +4,7 @@ import { View } from "../components/Themed";
 import Workout from "../models/Workout";
 import WorkoutComponent from "../components/Workout";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { WorkoutStackParamList } from "./TabOneScreen";
+import { WorkoutStackParamList } from "./WorkoutsScreen";
 
 const mockWorkouts: Workout[] = [
 	{
