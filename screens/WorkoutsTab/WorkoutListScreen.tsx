@@ -1,8 +1,8 @@
 import { FlatList, ListRenderItem, StyleSheet } from "react-native";
 
-import { View } from "../components/Themed";
-import Workout from "../models/Workout";
-import WorkoutComponent from "../components/Workout";
+import { View } from "../../components/Themed";
+import Workout from "../../models/Workout";
+import WorkoutComponent from "../../components/Workout";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { WorkoutStackParamList } from "./WorkoutsScreen";
 

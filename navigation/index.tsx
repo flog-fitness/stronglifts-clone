@@ -14,8 +14,8 @@ import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
-import WorkoutsScreen from '../screens/WorkoutsScreen';
-import HistoryScreen from '../screens/HistoryScreen';
+import WorkoutsScreen from '../screens/WorkoutsTab/WorkoutsScreen'
+import HistoryScreen from '../screens/HistoryTab/HistoryScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
 
