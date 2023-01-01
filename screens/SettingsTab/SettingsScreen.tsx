@@ -1,30 +1,29 @@
-// export default SettingsScreen({navigation,} : RootTabScreenProps<'Settings'>) {
-//   return <SettingsScreenNavigator/>;/*  */
-// }
+import { RootTabScreenProps } from '../../types';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import SettingsListScreen from './SettingsListScreen'
 
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
-
-export default function SettingsScreen({ navigation } : RootTabScreenProps<'Settings'>) {
-  return <SettingsScreenNavigator/>
+export default function SettingsScreen({
+  navigation,
+}: RootTabScreenProps<'Settings'>) {
+  return <SettingsScreenNavigator />;
 }
 
+// Settings interface needs a smarter approach
 interface SettingsDetailsParam {
   // setting: Settings,
 }
 
 export type SettingsStackParamList = {
-  WorkoutList: undefined;
-  WorkoutDetails: SettingsDetailsParam;
+  SettingsList: undefined;
+  SettingsDetails: SettingsDetailsParam;
 };
 
-const SettingsStack = createNativeStackNavigator<SettingsStackParamList>()
+const SettingsStack = createNativeStackNavigator<SettingsStackParamList>();
 
 function SettingsScreenNavigator() {
-  return(
+  return (
     <SettingsStack.Navigator>
-        <SettingsStack.Screen></SettingsStack.Screen>
+      <SettingsStack.Screen name='SettingsList' component={SettingsListScreen}></SettingsStack.Screen>
     </SettingsStack.Navigator>
-  )
-
+  );
 }
