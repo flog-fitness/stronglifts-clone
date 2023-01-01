@@ -61,7 +61,6 @@ export default function SettingsListScreen({
     <View style={styles.container}>
       <FlatList
         style={styles.list}
-        data={mockWorkouts}
         renderItem={renderItem}
         ItemSeparatorComponent={() => {
           return <View style={styles.separator} />;
