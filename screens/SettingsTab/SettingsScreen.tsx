@@ -2,6 +2,7 @@ import { RootTabScreenProps } from '../../types';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SettingsListScreen from './SettingsListScreen'
 import Setting from '../../models/Setting';
+import AppIconScreen from './Settings/AppIconScreen';
 
 export default function SettingsScreen({
   navigation,
@@ -17,7 +18,7 @@ interface SettingsDetailsParam {
 export type SettingsStackParamList = {
   SettingsList: undefined;
   // Sub Screens
-  AppIcon: undefined;
+  AppIcon: Setting;
 };
 
 const SettingsStack = createNativeStackNavigator<SettingsStackParamList>();
@@ -27,7 +28,7 @@ function SettingsScreenNavigator() {
     <SettingsStack.Navigator>
       <SettingsStack.Screen name='SettingsList' component={SettingsListScreen}></SettingsStack.Screen>
       {/* Sub Pages */}
-      <SettingsStack.Screen name='AppIcon' component={SettingsListScreen}></SettingsStack.Screen>
+      <SettingsStack.Screen name='AppIcon' component={AppIconScreen}></SettingsStack.Screen>
     </SettingsStack.Navigator>
   );
 }

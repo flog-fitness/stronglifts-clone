@@ -15,12 +15,9 @@ import Colours from '../../constants/Colors';
 import Setting from '../../models/Setting';
 import SettingsSection from '../../models/SettingsSection';
 
-
 const userSettings: SettingsSection = {
   title: 'User',
-  data: [
-    { name: 'Profile' }, 
-    { name: 'Pro Membership' }],
+  data: [{ name: 'Profile' }, { name: 'Pro Membership' }],
 };
 
 const appSettings: SettingsSection = {
@@ -86,7 +83,10 @@ export default function SettingsListScreen({
           return (
             <Pressable
               onPress={() => {
-                navigation.navigate("SettingsDetails")
+                // Remove spaces => Navigate to the page
+                const page = setting.name.replace(/\s/g, '');
+                console.log('Page', page);
+                navigation.navigate(page, { setting: setting });
               }}
               style={({ pressed }) => [
                 {
@@ -158,7 +158,10 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
 });
-function rgb(arg0: number, arg1: number, arg2: number): any | import("react-native").ColorValue | undefined {
+function rgb(
+  arg0: number,
+  arg1: number,
+  arg2: number
+): any | import('react-native').ColorValue | undefined {
   throw new Error('Function not implemented.');
 }
-
