@@ -1,4 +1,11 @@
-import { FlatList, ListRenderItem, Pressable, StyleSheet } from 'react-native';
+import {
+  FlatList,
+  ListRenderItem,
+  Pressable,
+  StyleSheet,
+  Text,
+  StatusBar,
+} from 'react-native';
 import { View } from '../../components/Themed';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { SettingsStackParamList } from './SettingsScreen';
@@ -8,33 +15,45 @@ interface Setting {
   // pageLink: undefined
 }
 
-type SettingsSection = Setting[];
+interface SettingsSection {
+  title: string;
+  data: Setting[];
+}
 
-const userSettings: SettingsSection = [
-  { name: 'Profile' },
-  { name: 'Pro Membership' },
-];
+const userSettings: SettingsSection = {
+  title: 'User',
+  data: [{ name: 'Profile' }, { name: 'Pro Membership' }],
+};
 
-const appSettings: SettingsSection = [
-  { name: 'Timer' },
-  { name: 'Weight Unit' },
-  { name: 'Display Auto Lock' },
-  { name: 'Apple Health' },
-  { name: 'Apple Watch' },
-  { name: 'App Icon' },
-];
+const appSettings: SettingsSection = {
+  title: 'Application Settings',
+  data: [
+    { name: 'Timer' },
+    { name: 'Weight Unit' },
+    { name: 'Display Auto Lock' },
+    { name: 'Apple Health' },
+    { name: 'Apple Watch' },
+    { name: 'App Icon' },
+  ],
+};
 
-const infoSettings: SettingsSection = [
-  { name: 'Help Center' },
-  { name: 'StrongLifts 5x5 Guide' },
-  { name: 'Report Issue' },
-  { name: 'Request Feature' },
-  { name: 'Ask Question' },
-  { name: 'Rate This App' },
-  { name: 'Export Data' },
-];
+const infoSettings: SettingsSection = {
+  title: 'Information',
+  data: [
+    { name: 'Help Center' },
+    { name: 'StrongLifts 5x5 Guide' },
+    { name: 'Report Issue' },
+    { name: 'Request Feature' },
+    { name: 'Ask Question' },
+    { name: 'Rate This App' },
+    { name: 'Export Data' },
+  ],
+};
 
-const dataSettings: SettingsSection = [{ name: 'Reset' }];
+const dataSettings: SettingsSection = {
+  title: 'Data',
+  data: [{ name: 'Reset' }],
+};
 
 const settings: SettingsSection[] = [
   userSettings,
@@ -48,24 +67,26 @@ type SettingsListScreenProps = NativeStackScreenProps<SettingsStackParamList>;
 export default function SettingsListScreen({
   navigation,
 }: SettingsListScreenProps) {
-  
-  const renderItem: ListRenderItem<Setting> = ({ item }) => {
+  const renderItem: ListRenderItem<SettingsSection> = ({ item }) => {
+    // console.log('Item', item.name);
     return (
-        <View>
-          {JSON.stringify(item)}
-        </View>
-    )
+      <View style={styles.container}>
+        <Text style={styles.title}>{item.title}</Text>
+        {item.data.map((setting) => {
+          return (
+            <View style={styles.item}>
+              <Text style={styles.itemText}>{setting.name}</Text>
+            </View>
+          );
+        })}
+      </View>
+    );
   };
 
   return (
     <View style={styles.container}>
-      <FlatList
-        style={styles.list}
-        renderItem={renderItem}
-        ItemSeparatorComponent={() => {
-          return <View style={styles.separator} />;
-        }}
-      />
+      {/* User Settings */}
+      <FlatList data={settings} renderItem={renderItem} />
     </View>
   );
 }
@@ -73,24 +94,25 @@ export default function SettingsListScreen({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingTop: 15,
-    paddingHorizontal: 20,
+    paddingTop: StatusBar.currentHeight,
+    marginHorizontal: 16,
+    backgroundColor: '#000',
   },
-  textHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+  item: {
+    padding: 20,
+    marginVertical: 8,
+    backgroundColor: '#f9c2ff',
   },
-  workoutContainer: {
-    backgroundColor: 'red',
-    width: '100%',
+  itemText: {
+    color: '#fff',
   },
-  list: {
-    width: '100%',
+  header: {
+    fontSize: 32,
+    backgroundColor: '#cd3',
   },
-  separator: {
-    opacity: 0,
-    height: 20,
+  title: {
+    fontSize: 24,
+    backgroundColor: '#cd3',
+    color: '#fff',
   },
 });

@@ -50,6 +50,7 @@ type WorkoutListScreenProps = NativeStackScreenProps<WorkoutStackParamList>;
 export default function WorkoutListScreen({
 	navigation,
 }: WorkoutListScreenProps) {
+	
 	const renderItem: ListRenderItem<Workout> = ({ item }) => {
 		return (
 			<WorkoutComponent

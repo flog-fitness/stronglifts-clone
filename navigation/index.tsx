@@ -18,6 +18,7 @@ import WorkoutsScreen from '../screens/WorkoutsTab/WorkoutsScreen'
 import HistoryScreen from '../screens/HistoryTab/HistoryScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
+import SettingsScreen from '../screens/SettingsTab/SettingsScreen';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -90,6 +91,14 @@ function BottomTabNavigator() {
         component={HistoryScreen}
         options={{
           title: 'History',
+          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="Settings"
+        component={SettingsScreen}
+        options={{
+          title: 'Settings',
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
       />
