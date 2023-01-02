@@ -12,10 +12,8 @@ import { SettingsStackParamList } from './SettingsScreen';
 import Colours from '../../constants/Colors';
 
 // Models
-import Setting from '../../models/Settings';
+import Setting from '../../models/Setting';
 import SettingsSection from '../../models/SettingsSection';
-
-
 
 
 const userSettings: SettingsSection = {
