@@ -10,12 +10,12 @@ export default function SettingsScreen({
 
 // Settings interface needs a smarter approach
 interface SettingsDetailsParam {
-  // setting: Settings,
+  setting: Setting,
 }
 
 export type SettingsStackParamList = {
   SettingsList: undefined;
-  SettingsDetails: SettingsDetailsParam;
+
 };
 
 const SettingsStack = createNativeStackNavigator<SettingsStackParamList>();
@@ -23,6 +23,11 @@ const SettingsStack = createNativeStackNavigator<SettingsStackParamList>();
 function SettingsScreenNavigator() {
   return (
     <SettingsStack.Navigator>
+      <SettingsStack.Screen name='SettingsList' component={SettingsListScreen}></SettingsStack.Screen>
+      <SettingsStack.Screen name='SettingsList' component={SettingsListScreen}></SettingsStack.Screen>
+      <SettingsStack.Screen name='SettingsList' component={SettingsListScreen}></SettingsStack.Screen>
+      <SettingsStack.Screen name='SettingsList' component={SettingsListScreen}></SettingsStack.Screen>
+      <SettingsStack.Screen name='SettingsList' component={SettingsListScreen}></SettingsStack.Screen>
       <SettingsStack.Screen name='SettingsList' component={SettingsListScreen}></SettingsStack.Screen>
     </SettingsStack.Navigator>
   );

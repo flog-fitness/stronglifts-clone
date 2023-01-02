@@ -11,16 +11,12 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { SettingsStackParamList } from './SettingsScreen';
 import Colours from '../../constants/Colors';
 
-interface Setting {
-  name: string;
-  value?: string;
-  pageLink?: undefined;
-}
+// Models
+import Setting from '../../models/Settings';
+import SettingsSection from '../../models/SettingsSection';
 
-interface SettingsSection {
-  title: string;
-  data: Setting[];
-}
+
+
 
 const userSettings: SettingsSection = {
   title: 'User',
