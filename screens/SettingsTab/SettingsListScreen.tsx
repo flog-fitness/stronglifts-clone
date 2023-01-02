@@ -9,6 +9,7 @@ import {
 import { View } from '../../components/Themed';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { SettingsStackParamList } from './SettingsScreen';
+import Colours from '../../constants/Colors';
 
 interface Setting {
   name: string;
@@ -52,7 +53,7 @@ const infoSettings: SettingsSection = {
 
 const dataSettings: SettingsSection = {
   title: 'Data',
-  data: [{ name: 'Reset' }],
+  data: [{ name: 'Reset' }, { name: 'Export' }],
 };
 
 const settings: SettingsSection[] = [
@@ -64,6 +65,19 @@ const settings: SettingsSection[] = [
 
 type SettingsListScreenProps = NativeStackScreenProps<SettingsStackParamList>;
 
+function assignStyle(data: Setting[], index: number) {
+  if (data.length == 1) {
+  }
+
+  if (index == 0) {
+    return styles.topItem;
+  } else if (index + 1 == data.length) {
+    return styles.bottomItem;
+  } else {
+    return styles.item;
+  }
+}
+
 export default function SettingsListScreen({
   navigation,
 }: SettingsListScreenProps) {
@@ -71,12 +85,14 @@ export default function SettingsListScreen({
     // console.log('Item', item.name);
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>{item.title}</Text>
-        {item.data.map((setting) => {
+        {item.data.map((setting, index) => {
+          console.log('## Key', index);
           return (
-            <View style={styles.item}>
-              <Text style={styles.itemText}>{setting.name}</Text>
-            </View>
+            <Pressable>
+              <View style={assignStyle(item.data, index)}>
+                <Text style={styles.itemText}>{setting.name}</Text>
+              </View>
+            </Pressable>
           );
         })}
       </View>
@@ -94,20 +110,38 @@ export default function SettingsListScreen({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: StatusBar.currentHeight,
-    marginHorizontal: 16,
-    backgroundColor: '#000',
+    // paddingTop: StatusBar.currentHeight,
+    padding: 4,
+    marginHorizontal: 8,
+    marginVertical: 12,
+    // backgroundColor: 'transparent',
+    backgroundColor: "#000",
   },
   item: {
-    padding: 20,
-    marginVertical: 8,
+    padding: 8,
+    backgroundColor: '#f9c2ff',
+    borderTopWidth: 1,
+    borderColor: Colours.subtextGrey,
+  },
+  topItem: {
+    borderTopEndRadius: 10,
+    borderTopStartRadius: 10,
+    padding: 8,
     backgroundColor: '#f9c2ff',
   },
+  bottomItem: {
+    borderBottomEndRadius: 10,
+    borderBottomStartRadius: 10,
+    padding: 8,
+    backgroundColor: '#f9c2ff',
+    borderTopWidth: 1,
+    borderColor: Colours.subtextGrey,
+  },
   itemText: {
-    color: '#fff',
+    // color: '#fff',
   },
   header: {
-    fontSize: 32,
+    fontSize: 30,
     backgroundColor: '#cd3',
   },
   title: {
