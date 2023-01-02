@@ -13,7 +13,8 @@ import Colours from '../../constants/Colors';
 
 interface Setting {
   name: string;
-  // pageLink: undefined
+  value?: string;
+  pageLink?: undefined;
 }
 
 interface SettingsSection {
@@ -23,7 +24,9 @@ interface SettingsSection {
 
 const userSettings: SettingsSection = {
   title: 'User',
-  data: [{ name: 'Profile' }, { name: 'Pro Membership' }],
+  data: [
+    { name: 'Profile' }, 
+    { name: 'Pro Membership' }],
 };
 
 const appSettings: SettingsSection = {
@@ -47,13 +50,12 @@ const infoSettings: SettingsSection = {
     { name: 'Request Feature' },
     { name: 'Ask Question' },
     { name: 'Rate This App' },
-    { name: 'Export Data' },
   ],
 };
 
 const dataSettings: SettingsSection = {
   title: 'Data',
-  data: [{ name: 'Reset' }, { name: 'Export' }],
+  data: [{ name: 'Reset' }, { name: 'Export Data' }],
 };
 
 const settings: SettingsSection[] = [
@@ -86,12 +88,20 @@ export default function SettingsListScreen({
     return (
       <View style={styles.container}>
         {item.data.map((setting, index) => {
-          console.log('## Key', index);
+          // console.log('## Key', index);
           return (
-            <Pressable>
-              <View style={assignStyle(item.data, index)}>
-                <Text style={styles.itemText}>{setting.name}</Text>
-              </View>
+            <Pressable
+              onPress={() => {
+                navigation.navigate("SettingsDetails")
+              }}
+              style={({ pressed }) => [
+                {
+                  backgroundColor: pressed ? Colours.superLightGrey : 'white',
+                },
+                assignStyle(item.data, index),
+              ]}
+            >
+              <Text style={styles.itemText}>{setting.name}</Text>
             </Pressable>
           );
         })}
@@ -108,34 +118,38 @@ export default function SettingsListScreen({
 }
 
 const styles = StyleSheet.create({
+  wrapperCustom: {
+    // padding: 3
+    // backgroundColor: 'transparent'
+  },
+  wrapper: {
+    paddingHorizontal: 3,
+  },
   container: {
     flex: 1,
     // paddingTop: StatusBar.currentHeight,
     padding: 4,
     marginHorizontal: 8,
     marginVertical: 12,
-    // backgroundColor: 'transparent',
-    backgroundColor: "#000",
+    backgroundColor: 'transparent',
   },
   item: {
-    padding: 8,
-    backgroundColor: '#f9c2ff',
+    padding: 10,
     borderTopWidth: 1,
-    borderColor: Colours.subtextGrey,
+    borderColor: Colours.superLightGrey,
+    // borderColor: Colours.subtextGrey,
   },
   topItem: {
     borderTopEndRadius: 10,
     borderTopStartRadius: 10,
-    padding: 8,
-    backgroundColor: '#f9c2ff',
+    padding: 10,
   },
   bottomItem: {
     borderBottomEndRadius: 10,
     borderBottomStartRadius: 10,
-    padding: 8,
-    backgroundColor: '#f9c2ff',
+    padding: 10,
     borderTopWidth: 1,
-    borderColor: Colours.subtextGrey,
+    borderColor: Colours.superLightGrey,
   },
   itemText: {
     // color: '#fff',
@@ -150,3 +164,7 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
 });
+function rgb(arg0: number, arg1: number, arg2: number): any | import("react-native").ColorValue | undefined {
+  throw new Error('Function not implemented.');
+}
+
