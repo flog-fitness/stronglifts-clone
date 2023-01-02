@@ -85,8 +85,11 @@ export default function SettingsListScreen({
               onPress={() => {
                 // Remove spaces => Navigate to the page
                 const page = setting.name.replace(/\s/g, '');
-                console.log('Page', page);
-                navigation.navigate(page, { setting: setting });
+                // FIXME: Weird prop issue | Speak to Izu or sleep on it
+                // console.log('=========================');
+                // console.log('Page', page);
+                // console.log('Setting', setting);
+                navigation.navigate(page, setting);
               }}
               style={({ pressed }) => [
                 {
