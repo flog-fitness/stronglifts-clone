@@ -26,15 +26,15 @@ interface SettingsParam {
 export type SettingsStackParamList = {
   SettingsList: undefined;
   // Sub Screens
-  AppIcon: Setting;
-  AppleHealth: Setting;
-  AppleWatch: Setting;
-  DataExport: Setting;
-  DisplayAutoLock: Setting;
-  Profile: Setting;
-  ProMembership: Setting;
-  Timer: Setting;
-  WeightUnit: Setting;
+  AppIcon: SettingsParam;
+  AppleHealth: SettingsParam;
+  AppleWatch: SettingsParam;
+  DataExport: SettingsParam;
+  DisplayAutoLock: SettingsParam;
+  Profile: SettingsParam;
+  ProMembership: SettingsParam;
+  Timer: SettingsParam;
+  WeightUnit: SettingsParam;
 };
 
 const SettingsStack = createNativeStackNavigator<SettingsStackParamList>();

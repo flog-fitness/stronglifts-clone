@@ -60,6 +60,7 @@ type SettingsListScreenProps = NativeStackScreenProps<SettingsStackParamList>;
 
 function assignStyle(data: Setting[], index: number) {
   if (data.length == 1) {
+    // TODO: Add edge case with round corners everywhere later if we keep this layout? 
   }
 
   if (index == 0) {
@@ -86,11 +87,14 @@ export default function SettingsListScreen({
                 // Remove spaces => Navigate to the page
                 const page = setting.name.replace(/\s/g, '');
                 // FIXME: Weird prop issue | Speak to Izu or sleep on it
-                // console.log('=========================');
-                // console.log('Page', page);
-                // console.log('Setting', setting);
-                navigation.navigate(page, setting);
+                console.log('=========================');
+                console.log('Page', page);
+                console.log('Setting', setting);
+                console.log('Setting Type:', typeof setting);
+
+                navigation.navigate(page, { setting: setting });
               }}
+
               style={({ pressed }) => [
                 {
                   backgroundColor: pressed ? Colours.superLightGrey : 'white',
@@ -123,7 +127,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 3,
   },
   container: {
-    flex: 1,
+    flex: 1,     
     // paddingTop: StatusBar.currentHeight,
     padding: 4,
     marginHorizontal: 8,
@@ -161,10 +165,3 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
 });
-function rgb(
-  arg0: number,
-  arg1: number,
-  arg2: number
-): any | import('react-native').ColorValue | undefined {
-  throw new Error('Function not implemented.');
-}

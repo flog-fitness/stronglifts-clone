@@ -2,11 +2,17 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import Setting from '../../../models/Setting'
 
-export default function AppIconScreen({ name }: Setting) {
+interface SetitngsProps {
+  setting: Setting;
+  onClick?: () => void;
+}
+
+
+export default function AppIconScreen({ setting }: SetitngsProps) {
   return (
     <View>
       <Text>AppIconScreen</Text>
-      <Text>Name Prop: {name}</Text>
+      <Text>Setting Object: {JSON.stringify(setting)}</Text>
     </View>
   )
 }
