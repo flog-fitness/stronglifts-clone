@@ -4,46 +4,72 @@ import Colors from '../../../constants/Colors';
 
 export default function WeightUnitScreen() {
   const [isEnabled, setIsEnabled] = useState(false);
+  const [bodyIsKG, setBodyIsKG] = useState(true);
+  const [exerciseIsKG, setExerciseIsKG] = useState(true);
+
   const toggleSwitch = () =>
     setIsEnabled((previousState: boolean) => !previousState);
+
+  const toggleExerciseWeight = () => {};
+  const toggleBodyWeight = () => {};
 
   return (
     <>
       {/* TODO: Make me a component when we introduce state management*/}
       {/* Section 1 -------------------------------------------------------- */}
       <View style={styles.section}>
-        <Text style={styles.headerText}>Exercise Weight</Text>
+        <Text style={styles.headerText}>Body Weight</Text>
 
-        <Pressable style={styles.containerTop}>
+        <Pressable
+          style={styles.containerTop}
+          onPress={() => setBodyIsKG(true)}
+        >
           <View style={styles.verticalFlex}>
             <Text style={styles.mainText}>Kilograms</Text>
           </View>
-          <View style={styles.switchWrapper}></View>
+          <View style={styles.switchWrapper}>
+            <Text>{bodyIsKG ? '✓' : ''}</Text>
+          </View>
         </Pressable>
 
-        <Pressable style={styles.containerBottom}>
+        <Pressable
+          style={styles.containerBottom}
+          onPress={() => setBodyIsKG(false)}
+        >
           <View style={styles.verticalFlex}>
             <Text style={styles.mainText}>Pounds</Text>
           </View>
-          <View style={styles.switchWrapper}></View>
+          <View style={styles.switchWrapper}>
+            <Text>{!bodyIsKG ? '✓' : ''}</Text>
+          </View>
         </Pressable>
       </View>
 
       {/* Section 2 -------------------------------------------------------- */}
       <View style={styles.section}>
-        <Text style={styles.headerText}>Body Weight</Text>
-        <Pressable style={styles.containerTop}>
+        <Text style={styles.headerText}>Exercise Weight</Text>
+        <Pressable
+          style={styles.containerTop}
+          onPress={() => setExerciseIsKG(true)}
+        >
           <View style={styles.verticalFlex}>
             <Text style={styles.mainText}>Kilograms</Text>
           </View>
-          <View style={styles.switchWrapper}></View>
+          <View style={styles.switchWrapper}>
+            <Text>{exerciseIsKG ? '✓' : ''}</Text>
+          </View>
         </Pressable>
 
-        <Pressable style={styles.containerBottom}>
+        <Pressable
+          style={styles.containerBottom}
+          onPress={() => setExerciseIsKG(false)}
+        >
           <View style={styles.verticalFlex}>
             <Text style={styles.mainText}>Pounds</Text>
           </View>
-          <View style={styles.switchWrapper}></View>
+          <View style={styles.switchWrapper}>
+            <Text>{!exerciseIsKG ? '✓' : ''}</Text>
+          </View>
         </Pressable>
       </View>
 

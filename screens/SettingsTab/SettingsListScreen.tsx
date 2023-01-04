@@ -25,9 +25,10 @@ const appSettings: SettingsSection = {
   data: [
     { name: 'Timer' },
     { name: 'Weight Unit' },
-    { name: 'Display Auto Lock' },
-    { name: 'Apple Health' },
-    { name: 'Apple Watch' },
+    // TODO: May implement later
+    // { name: 'Display Auto Lock' },
+    // { name: 'Apple Health' },
+    // { name: 'Apple Watch' },
     { name: 'App Icon' },
   ],
 };
@@ -60,7 +61,7 @@ type SettingsListScreenProps = NativeStackScreenProps<SettingsStackParamList>;
 
 function assignStyle(data: Setting[], index: number) {
   if (data.length == 1) {
-    // TODO: Add edge case with round corners everywhere later if we keep this layout? 
+    // TODO: Add 3edge case with round corners everywhere later if we keep this layout? 
   }
 
   if (index == 0) {

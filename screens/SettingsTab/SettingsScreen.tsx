@@ -24,7 +24,7 @@ interface SettingsParam {
 }
 
 export type SettingsStackParamList = {
-  SettingsList: undefined;
+  Settings: undefined;
   // Sub Screens
   AppIcon: SettingsParam;
   AppleHealth: SettingsParam;
@@ -43,7 +43,7 @@ function SettingsScreenNavigator() {
   return (
     <SettingsStack.Navigator>
       <SettingsStack.Screen
-        name="SettingsList"
+        name="Settings"
         component={SettingsListScreen}
       ></SettingsStack.Screen>
       {/* Sub Pages */}

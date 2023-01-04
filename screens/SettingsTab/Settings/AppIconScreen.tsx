@@ -10,11 +10,18 @@ interface SetitngsProps {
 
 export default function AppIconScreen({ setting }: SetitngsProps) {
   return (
-    <View>
-      <Text>AppIconScreen</Text>
-      <Text>Setting Object: {JSON.stringify(setting)}</Text>
+    <View
+      style={{
+        display: 'flex',
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      <Text>App Icon Screen{'\n\n'}</Text>
+      <Text>This may be implemented later when we deploy</Text>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({})
