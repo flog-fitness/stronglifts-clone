@@ -14,4 +14,7 @@ Clone of stronglifts app with added functionality
 1. Use meaningful commit names
 2. Make the commits small and frequent. That way, if something breaks and we have to rollback, less work/code is lost.
 
+# Testing
+1. Checking to see if my token has been renewed 
+
 
