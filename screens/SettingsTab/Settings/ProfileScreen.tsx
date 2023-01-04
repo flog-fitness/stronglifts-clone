@@ -18,6 +18,73 @@ const ProfileScreen = () => {
           </View>
         </Pressable>
       </View>
+
+      {/* Section 2 */}
+      <View style={styles.section}>
+        <Pressable style={styles.containerTop}>
+          <View style={styles.verticalFlex}>
+            <Text style={styles.mainText}>Gender</Text>
+          </View>
+          
+          <View style={styles.switchWrapper}>
+            <Text style={styles.greyText}>Male</Text>
+          </View>
+        </Pressable>
+
+        <Pressable style={styles.container}>
+          <View style={styles.verticalFlex}>
+            <Text style={styles.mainText}>Age</Text>
+          </View>
+
+          <View style={styles.switchWrapper}>
+            <Text style={styles.greyText}>30</Text>
+          </View>
+        </Pressable>
+
+        <Pressable style={styles.container}>
+          <View style={styles.verticalFlex}>
+            <Text style={styles.mainText}>Height</Text>
+          </View>
+
+          <View style={styles.switchWrapper}>
+            <Text style={styles.greyText}>175cm</Text>
+          </View>
+        </Pressable>
+
+        <Pressable style={styles.containerBottom}>
+          <View style={styles.verticalFlex}>
+            <Text style={styles.mainText}>Weight</Text>
+          </View>
+
+          <View style={styles.switchWrapper}>
+            <Text style={styles.greyText}>75kg</Text>
+          </View>
+        </Pressable>
+      </View>
+
+      {/* Section 3 */}
+      <View style={styles.section}>
+        <Pressable style={styles.containerTop}>
+          <View style={styles.verticalFlex}>
+            <Text style={styles.mainText}>Update Email</Text>
+          </View>
+        </Pressable>
+
+        <Pressable style={styles.containerBottom}>
+          <View style={styles.verticalFlex}>
+            <Text style={styles.mainText}>Sign Out</Text>
+          </View>
+        </Pressable>
+      </View>
+
+      {/* Section 4 */}
+      <View style={styles.section}>
+        <Pressable style={styles.containerRound}>
+          <View style={styles.verticalFlex}>
+            <Text style={styles.redText}>Victor Smith (username)</Text>
+          </View>
+        </Pressable>
+      </View>
     </>
   );
 };
@@ -102,6 +169,10 @@ const styles = StyleSheet.create({
   },
   greyText: {
     color: Colors.subtextGrey,
+    fontSize: 16,
+  },
+  redText: {
+    color: Colors.red,
     fontSize: 16,
   },
   subText: {
