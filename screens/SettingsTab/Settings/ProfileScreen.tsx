@@ -81,7 +81,7 @@ const ProfileScreen = () => {
       <View style={styles.section}>
         <Pressable style={styles.containerRound}>
           <View style={styles.verticalFlex}>
-            <Text style={styles.redText}>Victor Smith (username)</Text>
+            <Text style={styles.redText}>Delete Profile</Text>
           </View>
         </Pressable>
       </View>
