@@ -33,6 +33,7 @@ const appSettings: SettingsSection = {
   ],
 };
 
+// FIXME: include links later
 const infoSettings: SettingsSection = {
   title: 'Information',
   data: [
@@ -53,7 +54,7 @@ const dataSettings: SettingsSection = {
 const settings: SettingsSection[] = [
   userSettings,
   appSettings,
-  infoSettings,
+  // infoSettings,
   dataSettings,
 ];
 
