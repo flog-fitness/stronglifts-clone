@@ -5,7 +5,8 @@ import {
   Text, 
   TextInput,
   Keyboard,
-  ListViewComponent} from "react-native";
+  ListViewComponent,
+  ScrollView} from "react-native";
 import { RootTabScreenProps } from "../types";
 import {CalendarList} from 'react-native-calendars';
 import {useState} from 'react';
@@ -120,7 +121,10 @@ navigation,
             </View> 
             
             <>
-                {mockWorkouts.filter((workout) => workout.completed != undefined).sort((a, b) => (a.completed < b.completed) ? 1 : -1).map((workout)=>{
+                {mockWorkouts
+                .filter((workout): boolean => !!workout.completed)
+                .sort((a, b) => (a.completed! < b.completed! ? 1 : -1))
+                .map((workout)=>{
                     return(
                         <View key = {workout.id} style={styles.workoutListCard}>
                             <Text style={styles.notesText}>{workout.note}</Text>
@@ -142,21 +146,86 @@ navigation,
                       <Text style = {styles.unselectedText} onPress = {()=> setDisplayedTab('calendar')}>{'Calendar'}</Text>
                       <Text style = {styles.unselectedText} onPress = {()=> setDisplayedTab('notes')}>{'Notes'}</Text>
               </View>
-              <View style = {{paddingTop: 100}}>
-                  <Text style = {{color: 'white',}}>Undeveloped</Text>
-              </View>
+              <ScrollView>
+                {mockWorkouts
+                .filter((workout): boolean => !!workout.completed)
+                .sort((a, b) => (a.completed! < b.completed! ? 1 : -1))
+                .map((workout)=>{
+                    return(
+                        <View key = {workout.id} style={styles.workoutListCard}>
+                            <View style={styles.activityRow}>
+                                <Text style={[styles.notesText, styles.left]}>{workout.name}</Text>
+                                <Text style={[styles.notesText, styles.right]}>{workout.completed?.toDateString()}</Text>
+                            </View>
+                            <>
+                                {workout.exercises.map((exercise)=>{
+                                    return(
+                                        <>
+                                        <View style={styles.separator}/>
+                                        <View key = {(exercise.name)} style = {styles.activityRow}>
+                                            <Text style={[styles.notesText, styles.left]}>{exercise.name}</Text>
+                                            <Text style={[styles.notesText, styles.right]}>{
+                                                exercise.reps + 'x' 
+                                                + exercise.sets + ' ' 
+                                                + exercise.weight + 'lbs'}
+                                            </Text>
+                                        </View>
+                                        </>
+                                    )
+                                })}
+                            </>
+                            
+                        </View>
+                    )
+                })}
+            </ScrollView>
           </View>
       );
   }
 }
 
 const styles = StyleSheet.create({
+
+//workout List card
+workoutListCard: {
+    backgroundColor: '#5A5A5A',
+    color: 'white',
+    height: 'auto',
+    width: 335,
+    padding: 5,
+    margin: 'auto',
+    marginTop: 10,
+    borderRadius: 10,
+  },
+  activityRow:{
+    flexDirection: 'row'
+  },
+  left:{
+    marginLeft: 0,
+    marginRight: 'auto'
+  },
+  right:{
+    marginRight: 0,
+    marginLeft: 'auto'
+  },
+  notesText: {
+    padding: 5,
+    color: 'white',
+  },
+  separator: {
+    backgroundColor: 'white',
+    opacity: 0.2,
+    width: '100%',
+    height: 1,
+  },
+
+
 historyContainer: { //page container
   flex: 1,
   alignItems: "center",
   paddingTop: 1,
   paddingHorizontal: 20,
-      backgroundColor: 'black',
+  backgroundColor: 'black',
 },
   selectionDiv: { //selection header container
       flexDirection: 'row',
@@ -208,19 +277,5 @@ historyContainer: { //page container
       padding: 10,
       overflow: 'hidden'
   },
-  workoutListCard: {
-    backgroundColor: '#5A5A5A',
-    color: 'white',
-    height: 'auto',
-    width: 350,
-    padding: 5,
-    margin: 'auto',
-    marginTop: 10,
-    borderRadius: 10,
-  },
-  notesText: {
-    padding: 5,
-    color: 'white',
-  }
 
 });
